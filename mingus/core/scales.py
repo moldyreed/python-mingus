@@ -25,7 +25,7 @@ little overview:
 The diatonic scales
  * Diatonic(note, semitones)
 
-Ancient scales
+Natural Major modes
  * Ionian(note)
  * Dorian(note)
  * Phrygian(note)
@@ -33,6 +33,34 @@ Ancient scales
  * Mixolydian(note)
  * Aeolian(note)
  * Locrian(note)
+
+Melodic Minor modes
+ * MelodicMinor(note)
+ * Dorianb2(note)
+ * Lydian#5(note)
+ * Mixolydian#4(note)
+ * Mixolydianb6(note)
+ * Locrian2(note)
+ * Superlocrian(note)
+
+Harmonic Minor modes
+ * HarmonicMinor(note)
+ * Locrian6(note)
+ * Ionians5(note)
+ * Dorins4(note)
+ * Mixolydianb2b6(note)
+ * Locrians2(note)
+ * SuperAlt(note)
+
+Harmonic Major modes
+ * HarmonicMajor(note)
+ * Locrian26(note)
+ * Mixolydianb2s2b6(note)
+ * MelodicMinors4(note)
+ * Mixolydianb2(note)
+ * Lydians2s5(note)
+ * LocrianDiminished(note)
+
 
 The major scales
  * Major(note)
@@ -181,7 +209,7 @@ class Diatonic(_Scale):
         return notes * self.octaves + [notes[0]]
 
 
-# Ancient scales
+# Natural Major modes
 
 
 class Ionian(_Scale):
@@ -337,6 +365,247 @@ class Locrian(_Scale):
         notes = Diatonic(self.tonic, (1, 4)).ascending()[:-1]
         return notes * self.octaves + [notes[0]]
 
+# Melodic Minor modes
+
+class MelodicMinor(_Scale):
+
+    type = "ancient"
+
+    def __init__(self, note, octaves=1):
+        """Create the locrian mode scale starting on the chosen note."""
+        super(MelodicMinor, self).__init__(note, octaves)
+        self.name = "{0} melodic minor".format(self.tonic)
+
+    def ascending(self):
+        notes = Diatonic(self.tonic, (3, 7)).ascending()[:-1]
+        return notes * self.octaves + [notes[0]]
+
+class Dorianb2(_Scale):
+
+    type = "ancient"
+
+    def __init__(self, note, octaves=1):
+        """Create the locrian mode scale starting on the chosen note."""
+        super(Dorianb2, self).__init__(note, octaves)
+        self.name = "{0} dorian b2".format(self.tonic)
+
+    def ascending(self):
+        notes = Diatonic(self.tonic, (1, 6)).ascending()[:-1]
+        return notes * self.octaves + [notes[0]]
+
+class Lydians5(_Scale):
+
+    type = "ancient"
+
+    def __init__(self, note, octaves=1):
+        """Create the locrian mode scale starting on the chosen note."""
+        super(Lydians5, self).__init__(note, octaves)
+        self.name = "{0} Lydian #5".format(self.tonic)
+
+    def ascending(self):
+        notes = Diatonic(self.tonic, (5, 7)).ascending()[:-1]
+        return notes * self.octaves + [notes[0]]
+
+class Mixolydians4(_Scale):
+
+    type = "ancient"
+
+    def __init__(self, note, octaves=1):
+        """Create the locrian mode scale starting on the chosen note."""
+        super(Mixolydians4, self).__init__(note, octaves)
+        self.name = "{0} Mixolydian #4".format(self.tonic)
+
+    def ascending(self):
+        notes = Diatonic(self.tonic, (4, 6)).ascending()[:-1]
+        return notes * self.octaves + [notes[0]]
+
+class Mixolydianb6(_Scale):
+
+    type = "ancient"
+
+    def __init__(self, note, octaves=1):
+        """Create the locrian mode scale starting on the chosen note."""
+        super(Mixolydianb6, self).__init__(note, octaves)
+        self.name = "{0} Mixolydian b6".format(self.tonic)
+
+    def ascending(self):
+        notes = Diatonic(self.tonic, (3, 5)).ascending()[:-1]
+        return notes * self.octaves + [notes[0]]
+
+class Locrian2(_Scale):
+
+    type = "ancient"
+
+    def __init__(self, note, octaves=1):
+        """Create the locrian mode scale starting on the chosen note."""
+        super(Locrian2, self).__init__(note, octaves)
+        self.name = "{0} Locrian 2".format(self.tonic)
+
+    def ascending(self):
+        notes = Diatonic(self.tonic, (2, 4)).ascending()[:-1]
+        return notes * self.octaves + [notes[0]]
+
+class Superlocrian(_Scale):
+
+    type = "ancient"
+
+    def __init__(self, note, octaves=1):
+        """Create the locrian mode scale starting on the chosen note."""
+        super(Superlocrian, self).__init__(note, octaves)
+        self.name = "{0} Superlocrian".format(self.tonic)
+
+    def ascending(self):
+        notes = Diatonic(self.tonic, (1, 3)).ascending()[:-1]
+        return notes * self.octaves + [notes[0]]
+
+
+# Harmonic Minor modes
+
+class HarmonicMinor(_Scale):
+
+    type = "ancient"
+
+    def __init__(self, note, octaves=1):
+        """Create the locrian mode scale starting on the chosen note."""
+        super(HarmonicMinor, self).__init__(note, octaves)
+        self.name = "{0} Harmonic Minor".format(self.tonic)
+
+    def ascending(self):
+        notes = Diatonic(self.tonic, (2, 5, 7)).ascending()[:-1]
+        return notes * self.octaves + [notes[0]]
+
+class Locrian6(_Scale):
+
+    type = "ancient"
+
+    def __init__(self, note, octaves=1):
+        """Create the locrian mode scale starting on the chosen note."""
+        super(Locrian6, self).__init__(note, octaves)
+        self.name = "{0} locrian natural 6".format(self.tonic)
+
+    def ascending(self):
+        notes = Diatonic(self.tonic, (1, 4, 6)).ascending()[:-1]
+        return notes * self.octaves + [notes[0]]
+
+class Ionians5(_Scale):
+
+    type = "ancient"
+
+    def __init__(self, note, octaves=1):
+        """Create the locrian mode scale starting on the chosen note."""
+        super(Ionians5, self).__init__(note, octaves)
+        self.name = "{0} ionian #5".format(self.tonic)
+
+    def ascending(self):
+        notes = Diatonic(self.tonic, (3, 5, 7)).ascending()[:-1]
+        return notes * self.octaves + [notes[0]]
+
+class Dorians4(_Scale):
+
+    type = "ancient"
+
+    def __init__(self, note, octaves=1):
+        """Create the locrian mode scale starting on the chosen note."""
+        super(Dorians4, self).__init__(note, octaves)
+        self.name = "{0} dorian #4".format(self.tonic)
+
+    def ascending(self):
+        notes = Diatonic(self.tonic, (2, 4, 6)).ascending()[:-1]
+        return notes * self.octaves + [notes[0]]
+
+class Mixolydianb2b6(_Scale):
+
+    type = "ancient"
+
+    def __init__(self, note, octaves=1):
+        """Create the locrian mode scale starting on the chosen note."""
+        super(Mixolydianb2b6, self).__init__(note, octaves)
+        self.name = "{0} mixolydian b2 b6".format(self.tonic)
+
+    def ascending(self):
+        notes = Diatonic(self.tonic, (1, 3, 5)).ascending()[:-1]
+        return notes * self.octaves + [notes[0]]
+
+class Lydians2(_Scale):
+
+    type = "ancient"
+
+    def __init__(self, note, octaves=1):
+        """Create the locrian mode scale starting on the chosen note."""
+        super(Lydians2, self).__init__(note, octaves)
+        self.name = "{0} lydian #2".format(self.tonic)
+
+    def ascending(self):
+        notes = Diatonic(self.tonic, (2, 4, 7)).ascending()[:-1]
+        return notes * self.octaves + [notes[0]]
+
+class SuperAlt(_Scale):
+
+    type = "ancient"
+
+    def __init__(self, note, octaves=1):
+        """Create the locrian mode scale starting on the chosen note."""
+        super(SuperAlt, self).__init__(note, octaves)
+        self.name = "{0} SuperAlt".format(self.tonic)
+
+    def ascending(self):
+        notes = Diatonic(self.tonic, (1, 3, 6)).ascending()[:-1]
+        return notes * self.octaves + [notes[0]]
+
+
+# Harmonic Major modes
+
+class HarmonicMajor(_Scale):
+
+    type = "ancient"
+
+    def __init__(self, note, octaves=1):
+        """Create the locrian mode scale starting on the chosen note."""
+        super(HarmonicMajor, self).__init__(note, octaves)
+        self.name = "{0} harmonic major".format(self.tonic)
+
+    def ascending(self):
+        notes = Diatonic(self.tonic, (3, 5, 7)).ascending()[:-1]
+        return notes * self.octaves + [notes[0]]
+
+class Locrian26(_Scale):
+
+    type = "ancient"
+
+    def __init__(self, note, octaves=1):
+        """Create the locrian mode scale starting on the chosen note."""
+        super(Locrian26, self).__init__(note, octaves)
+        self.name = "{0} locrian natural 2 natural 6".format(self.tonic)
+
+    def ascending(self):
+        notes = Diatonic(self.tonic, (2, 4, 6)).ascending()[:-1]
+        return notes * self.octaves + [notes[0]]
+
+class Mixolydianb2s2b6(_Scale):
+
+    type = "ancient"
+
+    def __init__(self, note, octaves=1):
+        """Create the locrian mode scale starting on the chosen note."""
+        super(Mixolydianb2s2b6, self).__init__(note, octaves)
+        self.name = "{0} mixolydian b2#2b6 / phrygian b4".format(self.tonic)
+
+    def ascending(self):
+        notes = Diatonic(self.tonic, (1, 3, 5)).ascending()[:-1]
+        return notes * self.octaves + [notes[0]]
+
+class MelodicMinors4(_Scale):
+
+    type = "ancient"
+
+    def __init__(self, note, octaves=1):
+        """Create the locrian mode scale starting on the chosen note."""
+        super(MelodicMinors4, self).__init__(note, octaves)
+        self.name = "{0} melodic minor #4".format(self.tonic)
+
+    def ascending(self):
+        notes = Diatonic(self.tonic, (2, 4, 7)).ascending()[:-1]
+        return notes * self.octaves + [notes[0]]
 
 # The major scales
 
