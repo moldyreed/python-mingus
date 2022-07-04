@@ -377,7 +377,8 @@ class MelodicMinor(_Scale):
         self.name = "{0} melodic minor".format(self.tonic)
 
     def ascending(self):
-        notes = Diatonic(self.tonic, (3, 7)).ascending()[:-1]
+        notes = Ionian(self.tonic).ascending()[:-1]
+        notes[2] = diminish(notes[2])
         return notes * self.octaves + [notes[0]]
 
 class Dorianb2(_Scale):
@@ -390,7 +391,8 @@ class Dorianb2(_Scale):
         self.name = "{0} dorian b2".format(self.tonic)
 
     def ascending(self):
-        notes = Diatonic(self.tonic, (1, 6)).ascending()[:-1]
+        notes = Dorian(self.tonic).ascending()[:-1]
+        notes[2] = diminish(notes[2])
         return notes * self.octaves + [notes[0]]
 
 class Lydians5(_Scale):
