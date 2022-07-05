@@ -61,11 +61,6 @@ Harmonic Major modes
  * Lydians2s5(note)
  * LocrianDiminished(note)
 
-
-The major scales
- * Major(note)
- * HarmonicMajor(note)
-
 The minor scales
  * NaturalMinor(note)
  * HarmonicMinor(note)
@@ -392,7 +387,7 @@ class Dorianb2(_Scale):
 
     def ascending(self):
         notes = Dorian(self.tonic).ascending()[:-1]
-        notes[2] = diminish(notes[2])
+        notes[1] = diminish(notes[1])
         return notes * self.octaves + [notes[0]]
 
 class Lydians5(_Scale):
