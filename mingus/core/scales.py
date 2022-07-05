@@ -405,7 +405,8 @@ class Lydians5(_Scale):
         self.name = "{0} Lydian #5".format(self.tonic)
 
     def ascending(self):
-        notes = Diatonic(self.tonic, (5, 7)).ascending()[:-1]
+        notes = Lydian(self.tonic).ascending()[:-1]
+        notes[4] = augment(notes[4])
         return notes * self.octaves + [notes[0]]
 
 class Mixolydians4(_Scale):
@@ -418,7 +419,8 @@ class Mixolydians4(_Scale):
         self.name = "{0} Mixolydian #4".format(self.tonic)
 
     def ascending(self):
-        notes = Diatonic(self.tonic, (4, 6)).ascending()[:-1]
+        notes = Mixolydian(self.tonic).ascending()[:-1]
+        notes[3] = augment(notes[3])
         return notes * self.octaves + [notes[0]]
 
 class Mixolydianb6(_Scale):
@@ -431,7 +433,8 @@ class Mixolydianb6(_Scale):
         self.name = "{0} Mixolydian b6".format(self.tonic)
 
     def ascending(self):
-        notes = Diatonic(self.tonic, (3, 5)).ascending()[:-1]
+        notes = Mixolydian(self.tonic).ascending()[:-1]
+        notes[5] = diminish(notes[5])
         return notes * self.octaves + [notes[0]]
 
 class Locrian2(_Scale):
@@ -444,7 +447,8 @@ class Locrian2(_Scale):
         self.name = "{0} Locrian 2".format(self.tonic)
 
     def ascending(self):
-        notes = Diatonic(self.tonic, (2, 4)).ascending()[:-1]
+        notes = Locrian(self.tonic).ascending()[:-1]
+        notes[1] = augment(notes[1])
         return notes * self.octaves + [notes[0]]
 
 class Superlocrian(_Scale):
@@ -457,7 +461,8 @@ class Superlocrian(_Scale):
         self.name = "{0} Superlocrian".format(self.tonic)
 
     def ascending(self):
-        notes = Diatonic(self.tonic, (1, 3)).ascending()[:-1]
+        notes = Locrian(self.tonic).ascending()[:-1]
+        notes[3] = diminish(notes[3])
         return notes * self.octaves + [notes[0]]
 
 
@@ -473,7 +478,8 @@ class HarmonicMinor(_Scale):
         self.name = "{0} Harmonic Minor".format(self.tonic)
 
     def ascending(self):
-        notes = Diatonic(self.tonic, (2, 5, 7)).ascending()[:-1]
+        notes = Aeolian(self.tonic).ascending()[:-1]
+        notes[6] = augment(notes[6])
         return notes * self.octaves + [notes[0]]
 
 class Locrian6(_Scale):
@@ -486,7 +492,8 @@ class Locrian6(_Scale):
         self.name = "{0} locrian natural 6".format(self.tonic)
 
     def ascending(self):
-        notes = Diatonic(self.tonic, (1, 4, 6)).ascending()[:-1]
+        notes = Locrian(self.tonic).ascending()[:-1]
+        notes[5] = augment(notes[5])
         return notes * self.octaves + [notes[0]]
 
 class Ionians5(_Scale):
@@ -499,7 +506,8 @@ class Ionians5(_Scale):
         self.name = "{0} ionian #5".format(self.tonic)
 
     def ascending(self):
-        notes = Diatonic(self.tonic, (3, 5, 7)).ascending()[:-1]
+        notes = Ionian(self.tonic).ascending()[:-1]
+        notes[4] = augment(notes[4])
         return notes * self.octaves + [notes[0]]
 
 class Dorians4(_Scale):
@@ -512,7 +520,8 @@ class Dorians4(_Scale):
         self.name = "{0} dorian #4".format(self.tonic)
 
     def ascending(self):
-        notes = Diatonic(self.tonic, (2, 4, 6)).ascending()[:-1]
+        notes = Dorian(self.tonic).ascending()[:-1]
+        notes[3] = augment(notes[3])
         return notes * self.octaves + [notes[0]]
 
 class Mixolydianb2b6(_Scale):
@@ -525,7 +534,9 @@ class Mixolydianb2b6(_Scale):
         self.name = "{0} mixolydian b2 b6".format(self.tonic)
 
     def ascending(self):
-        notes = Diatonic(self.tonic, (1, 3, 5)).ascending()[:-1]
+        notes = Mixolydian(self.tonic).ascending()[:-1]
+        notes[1] = diminish(notes[1])
+        notes[5] = diminish(notes[5])
         return notes * self.octaves + [notes[0]]
 
 class Lydians2(_Scale):
@@ -538,7 +549,8 @@ class Lydians2(_Scale):
         self.name = "{0} lydian #2".format(self.tonic)
 
     def ascending(self):
-        notes = Diatonic(self.tonic, (2, 4, 7)).ascending()[:-1]
+        notes = Lydian(self.tonic).ascending()[:-1]
+        notes[1] = diminish(notes[1])
         return notes * self.octaves + [notes[0]]
 
 class SuperAlt(_Scale):
@@ -551,7 +563,8 @@ class SuperAlt(_Scale):
         self.name = "{0} SuperAlt".format(self.tonic)
 
     def ascending(self):
-        notes = Diatonic(self.tonic, (1, 3, 6)).ascending()[:-1]
+        notes = Superlocrian(self.tonic).ascending()[:-1]
+        notes[6] = diminish(notes[6])
         return notes * self.octaves + [notes[0]]
 
 
@@ -567,7 +580,8 @@ class HarmonicMajor(_Scale):
         self.name = "{0} harmonic major".format(self.tonic)
 
     def ascending(self):
-        notes = Diatonic(self.tonic, (3, 5, 7)).ascending()[:-1]
+        notes = Ionian(self.tonic).ascending()[:-1]
+        notes[5] = diminish(notes[5])
         return notes * self.octaves + [notes[0]]
 
 class Locrian26(_Scale):
@@ -580,7 +594,10 @@ class Locrian26(_Scale):
         self.name = "{0} locrian natural 2 natural 6".format(self.tonic)
 
     def ascending(self):
-        notes = Diatonic(self.tonic, (2, 4, 6)).ascending()[:-1]
+        notes = Locrian(self.tonic).ascending()[:-1]
+        notes[1] = augment(notes[1])
+        notes[5] = augment(notes[5])
+
         return notes * self.octaves + [notes[0]]
 
 class Mixolydianb2s2b6(_Scale):
@@ -593,8 +610,10 @@ class Mixolydianb2s2b6(_Scale):
         self.name = "{0} mixolydian b2#2b6 / phrygian b4".format(self.tonic)
 
     def ascending(self):
-        notes = Diatonic(self.tonic, (1, 3, 5)).ascending()[:-1]
+        notes = Phrygian(self.tonic).ascending()[:-1]
+        notes[3] = diminish(notes[3])
         return notes * self.octaves + [notes[0]]
+
 
 class MelodicMinors4(_Scale):
 
@@ -606,58 +625,55 @@ class MelodicMinors4(_Scale):
         self.name = "{0} melodic minor #4".format(self.tonic)
 
     def ascending(self):
-        notes = Diatonic(self.tonic, (2, 4, 7)).ascending()[:-1]
+        notes = MelodicMinor(self.tonic).ascending()[:-1]
+        notes[3] = augment(notes[3])
         return notes * self.octaves + [notes[0]]
 
-# The major scales
 
+class Mixolydianb2(_Scale):
 
-class Major(_Scale):
-
-    """The major scale.
-
-    Example:
-    >>> print Major('A')
-    Ascending:  A B C# D E F# G# A
-    Descending: A G# F# E D C# B A
-    """
-
-    type = "major"
+    type = "ancient"
 
     def __init__(self, note, octaves=1):
-        """Create the major scale starting on the chosen note."""
-        super(Major, self).__init__(note, octaves)
-        self.name = "{0} major".format(self.tonic)
+        """Create the locrian mode scale starting on the chosen note."""
+        super(Mixolydianb2, self).__init__(note, octaves)
+        self.name = "{0} mixolydian b2".format(self.tonic)
 
     def ascending(self):
-        notes = get_notes(self.tonic)
+        notes = Mixolydian(self.tonic).ascending()[:-1]
+        notes[1] = diminish(notes[1])
         return notes * self.octaves + [notes[0]]
 
 
-class HarmonicMajor(_Scale):
+class Lydians2s5(_Scale):
 
-    """The harmonic major scale.
-
-    Example:
-    >>> print HarmonicMajor('C')
-    Ascending:  C D E F G Ab B C
-    Descending: C B Ab G F E D C
-    """
-
-    type = "major"
+    type = "ancient"
 
     def __init__(self, note, octaves=1):
-        """Create the harmonic major scale starting on the chosen note."""
-        super(HarmonicMajor, self).__init__(note, octaves)
-        self.name = "{0} harmonic major".format(self.tonic)
+        """Create the locrian mode scale starting on the chosen note."""
+        super(Lydians2s5, self).__init__(note, octaves)
+        self.name = "{0} Lydian #2 #5".format(self.tonic)
 
     def ascending(self):
-        notes = Major(self.tonic).ascending()[:-1]
-        notes[5] = diminish(notes[5])
+        notes = Lydian(self.tonic).ascending()[:-1]
+        notes[1] = augment(notes[1])
+        notes[4] = augment(notes[4])
+
         return notes * self.octaves + [notes[0]]
 
+class LocrianDiminished(_Scale):
 
-# The minor scales
+    type = "ancient"
+
+    def __init__(self, note, octaves=1):
+        """Create the locrian mode scale starting on the chosen note."""
+        super(LocrianDiminished, self).__init__(note, octaves)
+        self.name = "{0} Locrian Diminished".format(self.tonic)
+
+    def ascending(self):
+        notes = SuperAlt(self.tonic).ascending()[:-1]
+        notes[3] = augment(notes[3])
+        return notes * self.octaves + [notes[0]]
 
 
 class NaturalMinor(_Scale):
@@ -681,56 +697,6 @@ class NaturalMinor(_Scale):
         notes = get_notes(self.tonic.lower())
         return notes * self.octaves + [notes[0]]
 
-
-class HarmonicMinor(_Scale):
-
-    """The harmonic minor scale.
-
-    Example:
-    >>> print HarmonicMinor('A')
-    Ascending:  A B C D E F G# A
-    Descending: A G# F E D C B A
-    """
-
-    type = "minor"
-
-    def __init__(self, note, octaves=1):
-        """Create the harmonic minor scale starting on the chosen note."""
-        super(HarmonicMinor, self).__init__(note, octaves)
-        self.name = "{0} harmonic minor".format(self.tonic)
-
-    def ascending(self):
-        notes = NaturalMinor(self.tonic).ascending()[:-1]
-        notes[6] = augment(notes[6])
-        return notes * self.octaves + [notes[0]]
-
-
-class MelodicMinor(_Scale):
-
-    """The melodic minor scale.
-
-    Example:
-    >>> print MelodicMinor('A')
-    Ascending:  A B C D E F# G# A
-    Descending: A G F E D C B A
-    """
-
-    type = "minor"
-
-    def __init__(self, note, octaves=1):
-        """Create the melodic minor scale starting on the chosen note."""
-        super(MelodicMinor, self).__init__(note, octaves)
-        self.name = "{0} melodic minor".format(self.tonic)
-
-    def ascending(self):
-        notes = NaturalMinor(self.tonic).ascending()[:-1]
-        notes[5] = augment(notes[5])
-        notes[6] = augment(notes[6])
-        return notes * self.octaves + [notes[0]]
-
-    def descending(self):
-        notes = NaturalMinor(self.tonic).descending()[:-1]
-        return notes * self.octaves + [notes[0]]
 
 
 class Bachian(_Scale):
