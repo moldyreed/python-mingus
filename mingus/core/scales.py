@@ -76,7 +76,7 @@ Other scales
 from __future__ import absolute_import
 
 from mingus.core import intervals
-from mingus.core.notes import augment, diminish, reduce_accidentals
+from mingus.core.notes import augment, diminish, reduce_accidentals, note_to_int
 from mingus.core.keys import keys, get_notes
 from mingus.core.mt_exceptions import NoteFormatError, FormatError, RangeError
 from six.moves import range
@@ -106,6 +106,22 @@ def determine(notes):
                     scale(get_notes(key[1])[0]).ascending()
                 ) or notes <= set(scale(get_notes(key[1])[0]).descending()):
                     res.append(scale(get_notes(key[1])[0]).name)
+    return res
+
+
+def determine_by_steps(notes):
+
+    steps_in_chord = set([note_to_int(v) for v in notes])
+    res = {}
+    for scale in _Scale.__subclasses__():
+        try:
+            sc = scale('C')
+            mode = set([note_to_int(v) for v in sc.ascending()])
+            if steps_in_chord <= mode:
+                res[type(sc).__name__] = mode
+        except:
+            pass
+
     return res
 
 
