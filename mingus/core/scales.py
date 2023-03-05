@@ -133,7 +133,7 @@ def determine_by_notes(play_over_chord, notes):
     all_combinations = []
     # generate all possible combinations
     for i in range(12):
-        all_combinations.append(set([(v + i) % 12 for v in notes]) | steps_in_chord)
+        all_combinations.append((set([(v + i) % 12 for v in notes]) | steps_in_chord), i)
 
     res = {}
     for scale in _Scale.__subclasses__():
@@ -143,9 +143,12 @@ def determine_by_notes(play_over_chord, notes):
             mode = set([note_to_int(v) for v in sc.ascending()])
             if len(mode) == 12:
                 continue
+            tonics = set()
             for i, row in enumerate(all_combinations):
                 if row <= mode:
-                    res[type(sc).__name__+' var '+str(i)] = row
+                    tonics.add(i)
+
+            res[type(sc).__name__] = tonics
         except:
             pass
 
