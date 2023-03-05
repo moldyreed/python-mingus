@@ -125,6 +125,33 @@ def determine_by_steps(notes):
     return res
 
 
+def determine_by_notes(play_over_chord, notes):
+
+    steps_in_chord = set([note_to_int(v) for v in play_over_chord])
+    notes = [note_to_int(v) for v in notes]
+
+    all_combinations = []
+    # generate all possible combinations
+    for i in range(12):
+        all_combinations.append(set([(v + i) % 12 for v in notes]) | steps_in_chord)
+
+    res = {}
+    for scale in _Scale.__subclasses__():
+        try:
+            sc = scale('C')
+
+            mode = set([note_to_int(v) for v in sc.ascending()])
+            if len(mode) == 12:
+                continue
+            for i, row in enumerate(all_combinations):
+                if row <= mode:
+                    res[type(sc).__name__+' var '+str(i)] = row
+        except:
+            pass
+
+    return res
+
+
 class _Scale(object):
 
     """General class implementing general methods.
@@ -687,27 +714,6 @@ class LocrianDiminished(_Scale):
         return notes * self.octaves + [notes[0]]
 
 
-class NaturalMinor(_Scale):
-
-    """The natural minor scale.
-
-    Example:
-    >>> print NaturalMinor('A')
-    Ascending:  A B C D E F G A
-    Descending: A G F E D C B A
-    """
-
-    type = "minor"
-
-    def __init__(self, note, octaves=1):
-        """Return the natural minor scale starting on the chosen note."""
-        super(NaturalMinor, self).__init__(note, octaves)
-        self.name = "{0} natural minor".format(self.tonic)
-
-    def ascending(self):
-        notes = get_notes(self.tonic.lower())
-        return notes * self.octaves + [notes[0]]
-
 
 
 class Bachian(_Scale):
@@ -830,6 +836,54 @@ class WholeTone(_Scale):
         notes = [self.tonic]
         for note in range(5):
             notes.append(intervals.major_second(notes[-1]))
+        return notes * self.octaves + [notes[0]]
+
+
+class MinorPentatonic(_Scale):
+
+    type = "pentatonics"
+
+    def __init__(self, note, octaves=1):
+        """Create the ionian mode scale starting on the chosen note."""
+        super(MinorPentatonic, self).__init__(note, octaves)
+        self.name = "{0} min pentatonic".format(self.tonic)
+
+    def ascending(self):
+        notes = Aeolian(self.tonic).ascending()[:-1]
+        notes.pop(1)
+        notes.pop(4)
+        return notes * self.octaves + [notes[0]]
+
+
+class DominantPentatonic(_Scale):
+
+    type = "pentatonics"
+
+    def __init__(self, note, octaves=1):
+        """Create the ionian mode scale starting on the chosen note."""
+        super(DominantPentatonic, self).__init__(note, octaves)
+        self.name = "{0} dom pentatonic".format(self.tonic)
+
+    def ascending(self):
+        notes = Mixolydian(self.tonic).ascending()[:-1]
+        notes.pop(3)
+        notes.pop(4)
+        return notes * self.octaves + [notes[0]]
+
+
+class Sus7b9Pentatonic(_Scale):
+
+    type = "pentatonics"
+
+    def __init__(self, note, octaves=1):
+        """Create the ionian mode scale starting on the chosen note."""
+        super(Sus7b9Pentatonic, self).__init__(note, octaves)
+        self.name = "{0} sus7b9 pentatonic".format(self.tonic)
+
+    def ascending(self):
+        notes = Dorianb2(self.tonic).ascending()[:-1]
+        notes.pop(2)
+        notes.pop(4)
         return notes * self.octaves + [notes[0]]
 
 
