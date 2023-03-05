@@ -133,7 +133,7 @@ def determine_by_notes(play_over_chord, notes):
     all_combinations = []
     # generate all possible combinations
     for i in range(12):
-        all_combinations.append((set([(v + i) % 12 for v in notes]) | steps_in_chord), i)
+        all_combinations.append(((set([(v + i) % 12 for v in notes]) | steps_in_chord), i))
 
     res = {}
     for scale in _Scale.__subclasses__():
