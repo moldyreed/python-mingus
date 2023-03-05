@@ -143,12 +143,16 @@ def determine_by_notes(play_over_chord, notes):
             mode = set([note_to_int(v) for v in sc.ascending()])
             if len(mode) == 12:
                 continue
+
             tonics = set()
+            modes = []
             for i, row in enumerate(all_combinations):
                 if row <= mode:
                     tonics.add(i)
+                    modes.append(type(sc).__name__)
 
-            res[type(sc).__name__] = tonics
+            res[", ".join(modes)] = tonics
+
         except:
             pass
 
