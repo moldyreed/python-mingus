@@ -596,7 +596,7 @@ class Lydians2(_Scale):
 
     def ascending(self):
         notes = Lydian(self.tonic).ascending()[:-1]
-        notes[1] = diminish(notes[1])
+        notes[1] = augment(notes[1])
         return notes * self.octaves + [notes[0]]
 
 class SuperAlt(_Scale):
