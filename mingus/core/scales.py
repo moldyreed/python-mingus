@@ -160,6 +160,38 @@ def determine_by_notes(play_over_chord, notes):
     return res
 
 
+def determine_by_notes_grouped_by_tonic(play_over_chord, notes):
+    """Return mapping {tonic_index: [mode_names]}.
+
+    For each transposition (0..11) of `notes`, find all scales (modes) in
+    which the union of `play_over_chord` and the transposed `notes` fits.
+    """
+    steps_in_chord = set([note_to_int(v) for v in play_over_chord])
+    notes = [note_to_int(v) for v in notes]
+
+    all_combinations = []
+    for i in range(12):
+        all_combinations.append(set([(v + i) % 12 for v in notes]) | steps_in_chord)
+
+    res = {}
+
+    for scale in _Scale.__subclasses__():
+        try:
+            sc = scale('C')
+            mode = set([note_to_int(v) for v in sc.ascending()])
+            if len(mode) == 12:
+                continue
+
+            name = type(sc).__name__
+            for i, row in enumerate(all_combinations):
+                if row <= mode:
+                    res.setdefault(i, []).append(name)
+        except:
+            pass
+
+    return {i: sorted(set(res[i])) for i in sorted(res)}
+
+
 class _Scale(object):
 
     """General class implementing general methods.
