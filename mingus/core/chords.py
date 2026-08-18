@@ -1389,3 +1389,17 @@ chord_shorthand = {  # Triads Augmented chords Suspended chords Sevenths Sixths
     "7b12": hendrix_chord,
     "5": lambda x: [x, intervals.perfect_fifth(x)],
 }
+
+
+def chord_to_intervals(chord_notes):
+    """Return a list of semitone intervals relative to the root note.
+
+    Example:
+    >>> chord_to_intervals(major_seventh('C'))
+    [0, 4, 7, 11]
+    >>> chord_to_intervals(minor_eleventh('C'))
+    [0, 3, 7, 10, 5]
+    """
+    semitones = [notes.note_to_int(n) for n in chord_notes]
+    base = semitones[0]
+    return [(s - base) % 12 for s in semitones]
